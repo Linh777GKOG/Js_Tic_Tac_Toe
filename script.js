@@ -73,3 +73,21 @@ function placeMark(cell, currentClass) {
 function swapTurns() {
   circleTurn = !circleTurn;
 }
+
+function setBoardHoverClass() {
+  board.classList.remove(X_CLASS);
+  board.classList.remove(CIRCLE_CLASS);
+  if (circleTurn) {
+    board.classList.add(CIRCLE_CLASS);
+  } else {
+    board.classList.add(X_CLASS);
+  }
+}
+
+function checkWin(currentClass) {
+  return WINNING_COMBINATIONS.some((combination) => {
+    return combination.every((index) => {
+      return cellElements[index].classList.contains(currentClass);
+    });
+  });
+}
